@@ -14,17 +14,27 @@
 		<button ng-click="inputStockSymbol()">Search</button>
 
 	</br>
-	</br>
-		<a> stock symbol input: {{ stocksymbol.symbol }} </a>
 
-		<div ng-if="retrievedData.symbol">
-			{{ retrievedData.symbol }}
+		<div ng-if="retrievedData.name">
+			{{ retrievedData.name }}
 		</div>
 
 		<div ng-if="retrievedData.price">
-			{{ retrievedData.price }}
+			{{ retrievedData.price | currency }}
 		</div>
+
+		<div ng-show="state">
+			<input name="shareBuyInput" type="number" ng-model="numShares" placeholder="Enter Number of Shares">
+
+			<button ng-click="buyShares()">BUY</button>
+		</div>
+
+		<div ng-if="portfolio.length > 0">
+			<div ng-repeat="item in portfolio">
+				{{ item.name }}
+			</div>
+		</div>
+
 	</div>
 </body>
 </html>
-
