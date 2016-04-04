@@ -5,7 +5,7 @@ app.controller('FormController', function($scope, $http) {
 	$scope.retrievedData = {
 		symbol: null,
 		price: null
-	}
+	};
 
 	$scope.stocksymbol = {
 		symbol: ''
@@ -17,7 +17,7 @@ app.controller('FormController', function($scope, $http) {
 		// $scope.retrievedData.symbol = 'APL';
 		$http({
 		  method: 'GET',
-		  url: 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=' + $scope.stocksymbol + '&callback=myFunction'
+		  url: 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=' + $scope.stocksymbol.symbol + '&callback=myFunction'
 		}).then(function successCallback(response) {
 			console.log('response', response);
 		    // this callback will be called asynchronously
