@@ -18,27 +18,38 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+	Stock Sim
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
-
+	Create a simulated stock portfolio and recieve real time updates.
+	
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+	With 'Stock Sim' you will be able to simulate buying stocks and track their performance over time.  Using 'Stock Sim' will
+	prepare you for real trading with real sharks.
 
 ## Problem ##
   > Describe the problem your product solves.
+	'Stock Sim' is an easy way to track stock information without any monetary investment.  It can be used for training, education, or just for fun!
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+	The simple interface allows anyone to simulate the trading of stocks.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+	"Stock Sim will lower the barrier of entry into day trading and investing" 
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+	The user simply has to input a stock symbol to get information on the price of that stock, enter a number of shares they would like to
+	simulate purchasing, and then click "BUY".  This will add the number of shares of the stock to their simulated portfolio.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+	"I was able to begin learning day trading within minutes!  Stock Sim helped me get comfortable with trading stocks without any risk!" - Alice
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+	Use Stock Sim as a vehicle for trading and use the wealth of financial advice on the internet to aid your decision making.
