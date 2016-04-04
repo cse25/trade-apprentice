@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="app.js"></script>
+	<title>Stock Sim</title>
+</head>
+<body>
+	<h1>Stock Sim</h1>
+	<div ng-controller="FormController as ctrl">
+
+		<input name="stockSymbolInput" type="text" ng-model="stocksymbol.symbol" placeholder="Enter a Stock Symbol">
+
+		<button ng-click="inputStockSymbol()">Search</button>
+
+	</br>
+	</br>
+		<a> stock symbol input: {{ stocksymbol.symbol }} </a>
+
+		<div ng-if="retrievedData.symbol">
+			{{ retrievedData.symbol }}
+		</div>
+
+		<div ng-if="retrievedData.price">
+			{{ retrievedData.price }}
+		</div>
+	</div>
+</body>
+</html>
+
