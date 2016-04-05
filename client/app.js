@@ -1,4 +1,3 @@
-//create Angular module named 'myApp'
 var app = angular.module('myApp', []);
 
 app.controller('FormController', function($scope, $http) {
@@ -12,9 +11,19 @@ app.controller('FormController', function($scope, $http) {
 		low: null
 	};
 
-	$scope.state = false;
+	$scope.searchTermExists = false;
 
 	$scope.portfolio = []
+
+	$scope.portfolioTotalValue = 0;
+
+	$scope.getPortfolioTotalValue = function() {
+		$scope.portfolioTotalValue = $scope.portfolio.map(function(item) {
+			return item.total;
+		}).reduce(function(a,b) {
+			return a + b;
+		})
+	};
 
 	$scope.stocksymbol = {
 		symbol: ''
@@ -22,7 +31,21 @@ app.controller('FormController', function($scope, $http) {
 
 	$scope.numShares;
 
-	$scope.inputStockSymbol = function() {
+	$scope.portfolioSnapshot = [];
+
+	$scope.takeSnapshot = function() {
+		$scope.portfolioSnapshot.push($scope.portfolioTotalValue);
+	};
+
+	$scope.checkPortfolioPerformance = function() {
+		if ($scope.portfolioSnapshot.length < 2) {
+			console.log("0% Gains");
+		} else {
+			var mostRecentSnapshot = $scope.portfolioSnapshot[$scope.portfolioSnapshot.length -1];
+		}
+	};
+
+	$scope.getStockPrice = function() {
 		$http({
 		  method: 'GET',
 		  url: 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=' + $scope.stocksymbol.symbol + '&callback=myFunction'
@@ -37,7 +60,7 @@ app.controller('FormController', function($scope, $http) {
 			$scope.retrievedData.open = dataObject.Open;
 			$scope.retrievedData.high = dataObject.High;
 			$scope.retrievedData.low = dataObject.Low;
-			$scope.state = true;
+			$scope.searchTermExists = true;
 		  }, function errorCallback(response) {
 		  	console.log('Error');
 		  });
@@ -48,9 +71,13 @@ app.controller('FormController', function($scope, $http) {
 		var purchase = {
 			shares: $scope.numShares,
 			symbol: $scope.retrievedData.symbol,
+			sharePrice: $scope.retrievedData.price,
 			total: $scope.numShares * $scope.retrievedData.price
 		};
 		$scope.portfolio.push(purchase);
 		console.log($scope.portfolio);
+		$scope.getPortfolioTotalValue();
+		$scope.takeSnapshot();
+		console.log($scope.portfolioSnapshot);
 	};
 });
