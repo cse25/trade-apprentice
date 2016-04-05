@@ -1,13 +1,24 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 	<head>
+		<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="app.js"></script>
 	<title>Stock Sim</title>
-</head>
+</head
 <body>
 	<h1>Stock Sim</h1>
+
+ 	<div class="card-panel teal lighten-2"><h3>Materialize Test</h3></div>
 	<div ng-controller="FormController as ctrl">
+
+		<div>Trading Account Balance: {{ accountBalance | currency }}</div>
+
+		<input name="depositAmount" type="number" ng-model="depositAmount" placeholder="Enter Deposit Amount">
+
+		<button ng-click="depositToAccount()">Deposit Funds</button>
+
+	</br>
 
 		<input name="stockSymbolInput" type="text" ng-model="stocksymbol.symbol" placeholder="Enter a Stock Symbol">
 
@@ -24,6 +35,7 @@
 			<input name="shareBuyInput" type="number" ng-model="numShares" placeholder="Enter Number of Shares">
 
 			<button ng-click="buyShares()">BUY</button>
+			<button ng-click="sellShares()">SELL</button>
 		</div>
 
 		<div ng-if="portfolio.length > 0">
@@ -34,9 +46,9 @@
 			<a>Total</a>
 			<div ng-repeat="item in portfolio">
 			
-				{{ item.shares }}
-				
 				{{ item.symbol }}
+				
+				{{ item.shares }}
 			
 				{{ item.sharePrice | currency }}
 			
@@ -48,7 +60,7 @@
 
 				{{ portfolioTotalValue | currency }}
 			</br>
-			<button ng-click="updatePortfolioToMarketValue()">Check Portfolio Performance</button>
+			<button ng-click="getSymbolsInPortfolio()">Refresh Portfolio</button>
 
 		</div>
 	</div>
