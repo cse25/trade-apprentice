@@ -80,7 +80,7 @@ app.controller('FormController', function($scope, $http) {
 
 	$scope.buyShares = function() {
 		if ($scope.numShares > 0 && $scope.accountBalance > ($scope.stockData.price * $scope.numShares)) {
-			console.log('Buying ' + $scope.numShares + ' Shares of ' + $scope.stockData.symbol + ' for $' + ($scope.numShares * $scope.stockData.price));
+			//console.log('Buying ' + $scope.numShares + ' Shares of ' + $scope.stockData.symbol + ' for $' + ($scope.numShares * $scope.stockData.price));
 			var purchase = {
 				shares: $scope.numShares,
 				symbol: $scope.stockData.symbol,
@@ -98,7 +98,7 @@ app.controller('FormController', function($scope, $http) {
 	};
 
 	$scope.sellShares = function() {
-		console.log('Selling ' + $scope.numShares + ' Shares of ' + $scope.stockData.symbol + ' for $' + ($scope.numShares * $scope.stockData.price));
+		//console.log('Selling ' + $scope.numShares + ' Shares of ' + $scope.stockData.symbol + ' for $' + ($scope.numShares * $scope.stockData.price));
 		var sale = {
 			shares: -($scope.numShares),
 			symbol: $scope.stockData.symbol,
@@ -116,12 +116,12 @@ app.controller('FormController', function($scope, $http) {
 		var vm = $scope
 		$scope.portfolio.forEach(function(item) {
 			symbols.push(item.symbol);
-			console.log('symbols: ', symbols);
+			//console.log('symbols: ', symbols);
 		})
 		symbols.forEach(function(symbol) {
 			$scope.getUpdatedStockData(symbol);
 		})
-		setTimeout(function() {vm.updatePortfolio()},2000);
+		setTimeout(function() {vm.updatePortfolio()},500);
 	};
 
 	$scope.getUpdatedStockData = function(symbol) {
@@ -139,13 +139,10 @@ app.controller('FormController', function($scope, $http) {
 	};
 
 	$scope.updatePortfolio = function() {
-		console.log('$scope.symbolPricePairs inside updatePortfolio', $scope.symbolPricePairs);
+		//console.log("Updated Prices:", $scope.symbolPricePairs);
 		for (var i = 0; i < $scope.portfolio.length; i++) {
-
-			console.log('$scope.symbolPricePairs', $scope.symbolPricePairs);
-			console.log('$scope.portfolio',$scope.portfolio[i])
 			$scope.portfolio[i].price = $scope.symbolPricePairs[$scope.portfolio[i].symbol];
 		}
-		console.log('$scope.portfolio Updated', $scope.portfolio);
+		console.log('Updated Portfolio:', $scope.portfolio);
 	}
 });

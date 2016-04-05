@@ -7,29 +7,26 @@
 	<title>Apprentice Trader</title>
 </head>
 <body class="container">
+	<img align="right" src="http://i.imgur.com/vaXpzmk.png?2">
 	<h1 class="card-panel #7986cb indigo lighten-2" style="color:white">Apprentice Trader</h1>
-
 	<div ng-controller="FormController as ctrl">
-
 		<h4>My Account Balance: 
 			<a style="color:green">
 			{{ accountBalance | currency }}
 			</a>
 		</h4>
-
+	</br>
     	<div class="row">
-    		<div class="col s12 m6 13">
+    		<div class="col s10 m5 l3">
     			<p>
 		<input name="depositAmount" type="number" ng-model="depositAmount" placeholder="Enter Deposit Amount (USD)">
 				</p>
 			</div>
 			<button class="#7986cb indigo lighten-2 waves-effect waves-light btn-large" ng-click="depositToAccount()">Deposit Funds</button>
 		</div>
-		
-	</br>
 
 		<div class="row">
-    		<div class="col s12 m6 13">
+    		<div class="col s10 m5 l3">
     			<p>
 		<input name="stockSymbolInput" type="text" ng-model="stocksymbol.symbol" placeholder="Enter a Stock Symbol">
 				</p>
