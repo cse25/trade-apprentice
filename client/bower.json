@@ -17,7 +17,7 @@
   ],
   "dependencies": {
     "angular": "^1.5.3",
-    "angular-material": "^1.0.7",
-    "jquery": "^2.2.2"
+    "jquery": "^2.2.2",
+    "Materialize": "materialize#^0.97.6"
   }
 }

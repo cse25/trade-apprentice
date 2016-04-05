@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
 	<head>
-		<link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+		<link rel="stylesheet" href="/bower_components/Materialize/dist/css/materialize.min.css">
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="app.js"></script>
-	<title>Stock Sim</title>
-</head
-<body>
-	<h1>Stock Sim</h1>
+	<title>Apprentice Trader</title>
+</head>
+<body class="container">
+	<h1 class="card-panel #7986cb indigo lighten-2" style="color:white">Apprentice Trader</h1>
 
- 	<div class="card-panel teal lighten-2"><h3>Materialize Test</h3></div>
 	<div ng-controller="FormController as ctrl">
 
-		<div>Trading Account Balance: {{ accountBalance | currency }}</div>
+		<h4>My Account Balance: 
+			<a style="color:green">
+			{{ accountBalance | currency }}
+			</a>
+		</h4>
 
-		<input name="depositAmount" type="number" ng-model="depositAmount" placeholder="Enter Deposit Amount">
-
-		<button ng-click="depositToAccount()">Deposit Funds</button>
-
+    	<div class="row">
+    		<div class="col s12 m6 13">
+    			<p>
+		<input name="depositAmount" type="number" ng-model="depositAmount" placeholder="Enter Deposit Amount (USD)">
+				</p>
+			</div>
+			<button class="#7986cb indigo lighten-2 waves-effect waves-light btn-large" ng-click="depositToAccount()">Deposit Funds</button>
+		</div>
+		
 	</br>
 
+		<div class="row">
+    		<div class="col s12 m6 13">
+    			<p>
 		<input name="stockSymbolInput" type="text" ng-model="stocksymbol.symbol" placeholder="Enter a Stock Symbol">
-
-		<button ng-click="getStockData()">Search</button>
-
+				</p>
+			</div>
+		<button class="#7986cb indigo lighten-2 waves-effect waves-light btn-large" ng-click="getStockData()">Search</button>
 	</br>
 
+	<h4>
+	</br>
 		<div ng-if="stockData.name">
 			{{ stockData.name }}
-			{{ stockData.price | currency }}
+
+			({{ stockData.symbol }})
+		
+			is currently trading at:
+
+			<a style="color:green">
+				{{ stockData.price | currency }}
+			</a>
+		</br>
+			<div style="font-size:50%">
+				{{ stockData.timestamp }}
+			</div>
+			<div style="font-size:50%">
+				open:
+				{{ stockData.open }}
+				| high:
+				{{ stockData.high }}
+				| low:
+				{{ stockData.low }}
+			</div>
+
 		</div>
+	</h4>
 
 		<div ng-show="searchTermExists">
 			<input name="shareBuyInput" type="number" ng-model="numShares" placeholder="Enter Number of Shares">
@@ -38,31 +72,29 @@
 			<button ng-click="sellShares()">SELL</button>
 		</div>
 
-		<div ng-if="portfolio.length > 0">
-			<p>Portfolio</p>
-			<a>Company</a>
-			<a>Shares</a>
-			<a>Share Price</a>
-			<a>Total</a>
-			<div ng-repeat="item in portfolio">
-			
-				{{ item.symbol }}
-				
-				{{ item.shares }}
-			
-				{{ item.sharePrice | currency }}
-			
-				{{ item.total | currency }}
-
-			</div>
-
-			<a>Total Value of Portfolio:</a>
-
-				{{ portfolioTotalValue | currency }}
+		<table class="striped">
+		 	<h4>My Portfolio</h4>
+	        <thead>
+	          <tr>
+	              <th data-field="Company">Company</th>
+	              <th data-field="Shares">Shares</th>
+	              <th data-field="Share Price">Share Price</th>
+	              <th data-field="Total">Total</th>
+	          </tr>
+	        </thead>
+	        <tbody>
+	          <tr ng-repeat="item in portfolio">
+	            <td>{{ item.symbol }}</td>
+	            <td>{{ item.shares }}</td>
+	            <td>{{ item.sharePrice | currency }}</td>
+	            <td>{{ item.total | currency }}</td>
+	          </tr>
+	          <h5>Portfolio Value: <a style="color:green">{{ portfolioTotalValue | currency }}</a></h5>
 			</br>
 			<button ng-click="getSymbolsInPortfolio()">Refresh Portfolio</button>
-
-		</div>
+	        </tbody>
+	      </table>
+      </div>
 	</div>
 </body>
 </html>

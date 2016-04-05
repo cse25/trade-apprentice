@@ -5,7 +5,6 @@ angular.module('angular-app', [
 ])
 
 app.controller('FormController', function($scope, $http) {
-	//Variable Declarations
 	$scope.depositAmount;
 
 	$scope.accountBalance = 0;
@@ -36,9 +35,9 @@ app.controller('FormController', function($scope, $http) {
 
 	$scope.symbolPricePairs = {};
 
-	//Function Declarations
 	$scope.depositToAccount = function() {
 		$scope.accountBalance += $scope.depositAmount;
+		$scope.depositAmount = "";
 	}
 
 	$scope.updatePortfolioTotalValue = function() {
@@ -63,7 +62,6 @@ app.controller('FormController', function($scope, $http) {
 		  url: 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=' + $scope.stocksymbol.symbol + '&callback=myFunction'
 		}).then(function successCallback(response) {
 			var string = response.data;
-			console.log('string :', string);
 			var newString = string.slice(11,-1);
 			var dataObject = JSON.parse(newString);
 			$scope.stockData.name = dataObject.Name;
@@ -77,6 +75,7 @@ app.controller('FormController', function($scope, $http) {
 		  }, function errorCallback(response) {
 		  	console.log('Error');
 		  });
+		$scope.stocksymbol.symbol = "";
 	};
 
 	$scope.buyShares = function() {
@@ -89,14 +88,13 @@ app.controller('FormController', function($scope, $http) {
 				total: $scope.numShares * $scope.stockData.price
 			};
 			$scope.portfolio.push(purchase);
-			console.log($scope.portfolio);
 			$scope.updatePortfolioTotalValue();
 			$scope.takeSnapshot();
-			console.log($scope.portfolioSnapshot);
 			$scope.accountBalance -= purchase.total;
 		} else {
-			console.log('Account Balance Too Low');
+			alert('Insufficient Funds');
 		}
+		$scope.numShares = "";
 	};
 
 	$scope.sellShares = function() {
@@ -108,17 +106,12 @@ app.controller('FormController', function($scope, $http) {
 			total: -($scope.numShares * $scope.stockData.price)
 		};
 		$scope.portfolio.push(sale);
-		console.log($scope.portfolio);
 		$scope.updatePortfolioTotalValue();
 		$scope.takeSnapshot();
-		console.log($scope.portfolioSnapshot);
 		$scope.accountBalance -= sale.total;
 	};
 
-	//NEW FUNCTIONS
-
 	$scope.getSymbolsInPortfolio = function() {
-		//Make AJAX calls to API and update Price and Total
 		var symbols = [];
 		var vm = $scope
 		$scope.portfolio.forEach(function(item) {
@@ -137,14 +130,9 @@ app.controller('FormController', function($scope, $http) {
 		  url: 'http://dev.markitondemand.com/MODApis/Api/v2/Quote/jsonp?symbol=' + symbol + '&callback=myFunction'
 		}).then(function successCallback(response) {
 			var string = response.data;
-			//console.log('string :', string);
 			var newString = string.slice(11,-1);
 			var dataObject = JSON.parse(newString);
-			//console.log('dataObject.LastPrice: ', dataObject.LastPrice);
 			$scope.symbolPricePairs[symbol] = dataObject.LastPrice;			
-			console.log('$scope.symbolPricePairs: ', $scope.symbolPricePairs);
-			// $scope.updatedPrices.push(dataObject.LastPrice);
-			// console.log($scope.updatedPrices);
 		  }, function errorCallback(response) {
 		  	console.log('Error');
 		  });
@@ -158,6 +146,6 @@ app.controller('FormController', function($scope, $http) {
 			console.log('$scope.portfolio',$scope.portfolio[i])
 			$scope.portfolio[i].price = $scope.symbolPricePairs[$scope.portfolio[i].symbol];
 		}
-		console.log('$scope.portfolio updated', $scope.portfolio);
+		console.log('$scope.portfolio Updated', $scope.portfolio);
 	}
 });
