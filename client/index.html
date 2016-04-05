@@ -11,13 +11,13 @@
 
 		<input name="stockSymbolInput" type="text" ng-model="stocksymbol.symbol" placeholder="Enter a Stock Symbol">
 
-		<button ng-click="getStockPrice()">Search</button>
+		<button ng-click="getStockData()">Search</button>
 
 	</br>
 
-		<div ng-if="retrievedData.name">
-			{{ retrievedData.name }}
-			{{ retrievedData.price | currency }}
+		<div ng-if="stockData.name">
+			{{ stockData.name }}
+			{{ stockData.price | currency }}
 		</div>
 
 		<div ng-show="searchTermExists">
@@ -48,7 +48,7 @@
 
 				{{ portfolioTotalValue | currency }}
 			</br>
-			<button ng-click="checkPortfolioPerformance()">Check Portfolio Performance</button>
+			<button ng-click="updatePortfolioToMarketValue()">Check Portfolio Performance</button>
 
 		</div>
 	</div>
