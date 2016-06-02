@@ -1,7 +1,20 @@
-
 # MVP (Solo) Project
 
-### Overview:
+## Trade Apprentice: Stock Trading Simulator
+
+### Instructions:
+
+bower install from client folder
+<br>
+npm install from server folder
+<br>
+npm start from server folder
+
+### Screenshot:
+
+![Trade Apprentice](http://i.imgur.com/lC2QPjC.png)
+
+### Assignment Overview:
 
 You have 36 hours to produce something compelling using the skills you've honed over the past five weeks. 
 
